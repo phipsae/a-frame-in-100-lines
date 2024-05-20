@@ -39,7 +39,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const svgCode = `
   <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <rect width="100" height="100" fill="red" />
-  <circle cx="50" cy="10" r="10" />
+  <circle cx="50" cy="50" r="10" />
 </svg>
   `;
 
