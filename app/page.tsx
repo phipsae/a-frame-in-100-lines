@@ -41,6 +41,14 @@ export default function Page() {
   return (
     <>
       <h1>zizzamia.xyz, PHIPSAE</h1>
+      <button
+        type="button"
+        onClick={() => {
+          console.log('test');
+        }}
+      >
+        Click Me
+      </button>
     </>
   );
 }
