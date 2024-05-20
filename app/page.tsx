@@ -5,14 +5,16 @@ import { NEXT_PUBLIC_URL } from './config';
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      label: 'GET NEFT',
+      label: 'Story time!',
+    },
+    {
+      action: 'link',
+      label: 'Link to Google',
       target: 'https://www.google.com',
     },
     {
-      action: 'tx',
-      label: 'Send Base Sepolia',
-      target: `${NEXT_PUBLIC_URL}/api/tx`,
-      postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
+      label: 'Redirect to pictures',
+      action: 'post_redirect',
     },
   ],
   image: {
@@ -20,7 +22,7 @@ const frameMetadata = getFrameMetadata({
     aspectRatio: '1:1',
   },
   input: {
-    text: 'Tell me a story',
+    text: 'Tell me a boat story',
   },
   postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
 });
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <h1>zizzamia.xyz, PHIPSAE</h1>
+      <h1>zizzamia.xyz, PHIPSAE!!</h1>
     </>
   );
 }
