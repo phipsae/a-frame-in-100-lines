@@ -5,7 +5,8 @@ import { NEXT_PUBLIC_URL } from './config';
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      label: 'Story time TEST!!!',
+      label: 'GET NEFT',
+      target: 'https://www.google.com',
     },
     {
       action: 'tx',
