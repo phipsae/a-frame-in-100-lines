@@ -21,19 +21,19 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     address: '0xA0Cf798816D4b9b9866b5330EEa46a18382f251e',
   });
 
-  if (!isValid) {
-    return new NextResponse('Message not valid', { status: 500 });
-  }
+  // if (!isValid) {
+  //   return new NextResponse('Message not valid', { status: 500 });
+  // }
 
-  const text = message.input || '';
-  let state = {
-    page: 0,
-  };
-  try {
-    state = JSON.parse(decodeURIComponent(message.state?.serialized));
-  } catch (e) {
-    console.error(e);
-  }
+  // const text = message.input || '';
+  // let state = {
+  //   page: 0,
+  // };
+  // try {
+  //   state = JSON.parse(decodeURIComponent(message.state?.serialized));
+  // } catch (e) {
+  //   console.error(e);
+  // }
 
   // SVG code
   const svgCode = `
@@ -47,12 +47,12 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   /**
    * Use this code to redirect to a different page
    */
-  if (message?.button === 3) {
-    return NextResponse.redirect(
-      'https://www.google.com/search?q=cute+dog+pictures&tbm=isch&source=lnms',
-      { status: 302 },
-    );
-  }
+  // if (message?.button === 3) {
+  //   return NextResponse.redirect(
+  //     'https://www.google.com/search?q=cute+dog+pictures&tbm=isch&source=lnms',
+  //     { status: 302 },
+  //   );
+  // }
 
   return new NextResponse(
     getFrameHtmlResponse({
@@ -67,10 +67,10 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         src: svgDataUrl,
       },
       postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
-      state: {
-        page: state?.page + 1,
-        time: new Date().toISOString(),
-      },
+      // state: {
+      //   page: state?.page + 1,
+      //   time: new Date().toISOString(),
+      // },
     }),
   );
 }
