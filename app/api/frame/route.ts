@@ -9,7 +9,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   let accountAddress: string | undefined = '';
   let text: string | undefined = '';
 
-  const body: FrameRequest = await req.json();
+  const body = await req.json();
   console.log(body)
   
   let state = 1;
