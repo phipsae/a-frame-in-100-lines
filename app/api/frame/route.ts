@@ -6,7 +6,7 @@ import { baseSepolia } from 'viem/chains';
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
-  // const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
+  const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
 
   function svgToDataURL(svg: string): string {
     return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
@@ -37,9 +37,17 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
 
   // SVG code
   const svgCode = `
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100" height="100" fill="red" />
-  <circle cx="50" cy="50" r="10" />
+  <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" fill="none">
+<rect width="1000" height="1000" fill="black"/>
+<ellipse cx="499.836" cy="499.835" rx="372" ry="372" transform="rotate(90.5938 499.836 499.835)" fill="url(#paint0_linear_1_57)"/>
+<path d="M131.944 164C149.648 164 164 149.673 164 132C164 114.327 149.648 100 131.944 100C115.148 100 101.368 112.896 100 129.31H142.37V134.69H100C101.368 151.104 115.148 164 131.944 164Z" fill="#F7E582"/>
+<defs>
+<linearGradient id="paint0_linear_1_57" x1="875.281" y1="495.473" x2="124.015" y2="503.26" gradientUnits="userSpaceOnUse">
+<stop stop-color="#AD8B27"/>
+<stop offset="0.479167" stop-color="#F7E582"/>
+<stop offset="1" stop-color="#AD8B27"/>
+</linearGradient>
+</defs>
 </svg>
   `;
 
