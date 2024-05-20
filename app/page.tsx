@@ -6,6 +6,7 @@ const frameMetadata = getFrameMetadata({
   buttons: [
     {
       label: 'Click here!',
+      action: 'post_redirect',
     },
   ],
   image: {
