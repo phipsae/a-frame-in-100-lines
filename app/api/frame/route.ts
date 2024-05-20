@@ -1,10 +1,25 @@
 import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
 import { NEXT_PUBLIC_URL } from '../../config';
+import { createPublicClient, http } from 'viem';
+import { baseSepolia } from 'viem/chains';
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
   const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
+
+  function svgToDataURL(svg: string): string {
+    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+  }
+
+  const client = createPublicClient({
+    chain: baseSepolia,
+    transport: http(),
+  });
+
+  const transactionCount = await client.getTransactionCount({
+    address: '0xA0Cf798816D4b9b9866b5330EEa46a18382f251e',
+  });
 
   if (!isValid) {
     return new NextResponse('Message not valid', { status: 500 });
@@ -19,6 +34,15 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   } catch (e) {
     console.error(e);
   }
+
+  // SVG code
+  const svgCode = `
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="50" />
+    </svg>
+  `;
+
+  const svgDataUrl = svgToDataURL(svgCode);
 
   /**
    * Use this code to redirect to a different page
@@ -47,7 +71,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         },
       ],
       image: {
-        src: `${NEXT_PUBLIC_URL}/park-1.png`,
+        src: svgDataUrl,
       },
       postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
       state: {
